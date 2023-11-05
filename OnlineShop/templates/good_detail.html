@@ -1,0 +1,131 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block title %}Good detail{% endblock %}
+{% block main %}
+    <div class="men">
+        <div class="container">
+            <div class="col-md-9 single_top">
+                <div class="single_left">
+                    <div class="labout span_1_of_a1">
+                        <div class="flexslider">
+                            <ul class="slides">
+                                <li data-thumb="{{ good.image.url }}">
+                                    <img src="{{ good.image.url }}" alt=""/>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cont1 span_2_of_a1 simpleCart_shelfItem">
+                        <form method="post" action="/cart/add" id="add_form">
+                            {% csrf_token %}
+                            <h1>{{ good.name }}</h1>
+                            {% if good.in_stock %}
+                                <p class="availability">Availability: <span class="color">In stock</span></p>
+                            {% else %}
+                                <p class="availability">Availability: <span class="color">Not available</span></p>
+                            {% endif %}
+                            <div class="price_single">
+                                {% if good.price_acc is None or good.price_acc >= good.price %}
+                                    <span class="actual">${{ good.price }}</span>
+                                {% else %}
+                                    <span class="reducedfrom">${{ good.price }}</span>
+                                    <span class="amount item_price actual">${{ good.price_acc }}</span>
+                                    <a href="#">click for offer</a>
+                                {% endif %}
+                            </div>
+                            <h2 class="quick">Quick Overview:</h2>
+                            <p class="quick_desc">{{ good.description }}</p>
+                            <ul class="size">
+                                <h3>Strap material</h3>
+                                <li><input type="radio" value="rubber" name="id_material" checked>Rubber</li>
+                                <li><input type="radio" value="Polymer" name="id_material">Polymer</li>
+                                <li><input type="radio" value="Silicon" name="id_material">Silicon</li>
+                                <li><input type="radio" value="Fabric" name="id_material">Fabric</li>
+                                <li><input type="radio" value="Leather" name="id_material">Leather</li>
+                            </ul>
+                            <div class="quantity_box">
+                                <ul class="product-qty">
+                                    <span>Quantity:</span>
+                                    <select name="id_quantity">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </ul>
+                                <ul class="single_social">
+                                    <li><a href=""><i class="fb1"> </i> </a></li>
+                                    <li><a href=""><i class="tw1"> </i> </a></li>
+                                    <li><a href=""><i class="g1"> </i> </a></li>
+                                    <li><a href=""><i class="linked"> </i> </a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <input type="number" name="id_good_id" value="{{ good.id }}" style="display: none;">
+                            {% if good.in_stock %}
+                                <a type="submit" href="#" onclick="document.getElementById('add_form').submit()"
+                                       class="btn btn-primary btn-normal btn-inline btn_form button item_add item_1"
+                                   target="_self">Add to cart</a>
+                            {% endif %}
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="sap_tabs">
+                    <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                        <ul class="resp-tabs-list">
+                            <li class="resp-tab-item" aria-controls="tab_item-0" role="tab">
+                                <span>Product Description</span></li>
+                            <li class="resp-tab-item" aria-controls="tab_item-1" role="tab">
+                                <span>Additional Information</span></li>
+                            <li class="resp-tab-item" aria-controls="tab_item-2" role="tab"><span>Reviews</span></li>
+                        </ul>
+                        <div class="resp-tabs-container">
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+                                <div class="facts">
+                                    <ul class="tab_list">
+                                        <li><a href="#">{{ good.description }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                                <div class="facts">
+                                    <ul class="tab_list">
+                                        <li><a href="#">{{ good.content }}</a></li>
+                                        <li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
+                                <div class="facts">
+                                    <ul class="tab_list">
+                                        {% for comment in comments %}
+                                            <li>
+                                                <a href="#"><b>{{ comment.user.username }}: </b>{{ comment.text }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% if good.comments %}
+                                    {% if is_bought %}
+                                        <form method="post" action="/good/comment">
+                                            {% csrf_token %}
+                                            <h3>Send comment</h3>
+                                            <textarea name="comment_text">Enter text here...</textarea>
+                                            <input type="submit" value="Send">
+                                        </form>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+{% endblock %}

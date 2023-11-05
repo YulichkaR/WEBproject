@@ -1,0 +1,64 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% block title %}Good detail{% endblock %}
+{% block main %}
+    <div class="account-in">
+        <div class="container">
+            <div class="check_box">
+                <div class="col-md-9 cart-items">
+                    <h1>My Shopping Bag</h1>
+                    {% for item in cart_items %}
+                        <div class="cart-header{{ item.id }}">
+                            <div class="close{{ item.id }}"></div>
+                            <div class="cart-sec simpleCart_shelfItem">
+                                <div class="cart-item cyc">
+                                    <img src="{{ item.good.image.url }}" class="img-responsive" alt=""/>
+                                </div>
+                                <div class="cart-item-info">
+                                    <h3><a href="/good/{{ item.good.id }}">{{ item.good.name }}</a><span>{{ item.good.category.name }}</span>
+                                    </h3>
+                                    <ul class="qty">
+                                        <li><p>Strip material : {{ item.material }}</p></li>
+                                        <li><p>Qty : {{ item.quantity }}</p></li>
+                                    </ul>
+                                    <div class="delivery">
+                                        <p>Service Charges : 10$</p>
+                                        <span>Delivered in 2-3 business days</span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+                {% if cart is not None %}
+                    <div class="col-md-3 cart-total">
+                        <hr>
+                        <div class="price-details">
+                            <h3>Price Details</h3>
+                            <span>Total</span>
+                            <span class="total1">{{ cart.total }}</span>
+                            <span>Discount</span>
+                            <span class="total1">{{ cart.discount }}</span>
+                            <span>Delivery Charges</span>
+                            <span class="total1">50</span>
+                            <div class="clearfix"></div>
+                        </div>
+                        <ul class="total_price">
+                            <li class="last_price"><h4>TOTAL</h4></li>
+                            <li class="last_price"><span>{{ cart.cart_total }}</span></li>
+                            <div class="clearfix"></div>
+                        </ul>
+                        <form action="/cart/buy" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="continue">Place order</button>
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
