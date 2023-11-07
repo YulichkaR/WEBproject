@@ -1,204 +1,216 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block additional_css %}
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="{% static 'styles/style.css' %}" rel='stylesheet' type='text/css' />
-  <link href="{% static 'styles/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
-  <link href="{% static 'styles/flexslider.css' %}" rel="stylesheet" type="text/css" media="all" />
-  <link href="{% static 'styles/component.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="{% static 'styles/style.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'styles/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'styles/flexslider.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'styles/component.css' %}" rel="stylesheet" type="text/css" media="all" />
 {% endblock %}
 {% block additional_fonts %}
-  <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-  <link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Dorsa' rel='stylesheet' type='text/css'>
 {% endblock %}
 {% block additional_js %}
-  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
   function hideURLbar(){ window.scrollTo(0,1); } </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="{% static 'scripts/megamenu.js' %}"></script>
-  <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-  <script src="{% static 'scripts/jquery.easydropdown.js' %}"></script>
-  <script src="{% static 'scripts/simpleCart.min.js' %}"> </script>
-  <script src="{% static 'scripts/easyResponsiveTabs.js' %}"> </script>
-  <script src="{% static 'scripts/jquery.flexslider.js' %}"> </script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-        $('#horizontalTab').easyResponsiveTabs({
-            type: 'default', //Types: default, vertical, accordion
-            width: 'auto', //auto or any width like 600px
-            fit: true   // 100% fit in a container
-        });
-    });
-    </script>
-    <script>
-        // Can also be used with $(document).ready()
-        $(window).ready(function () {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
-            });
-        });
-    </script>
-    <script>$(document).ready(function (c) {
-        $("div[class^='close']").on('click', function (c) {
-            let id = this.className.slice(5);
-            let headerName = 'cart-header' + id;
-            $('div[class^=' + headerName + "]").fadeOut('slow', function (c) {
-                $('div[class^=' + headerName + "]").remove();
-            });
-            $.ajax({
-                url: "/cart/remove",
-                type: "POST",
-                data: { "id": id , 'csrfmiddlewaretoken': '{{ csrf_token }}' ,}
-            });
-        });
-    });
-    </script>
-    <script>
-        $(window).ready(function () {
-            $('input[name$="id_material"]').on('change', function (c) {
-                this.parent().setAttribute("background", "#F9D9BE");
-                this.parent().setAttribute("color", "#555");
-                this.parent().setAttribute("font-size", "0.85em");
-                this.parent().setAttribute("visibility", "hidden");
-            });
-        });
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'scripts/megamenu.js' %}"></script>
+<script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+<script src="{% static 'scripts/jquery.easydropdown.js' %}"></script>
+<script src="{% static 'scripts/simpleCart.min.js' %}"> </script>
+<script src="{% static 'scripts/easyResponsiveTabs.js' %}"> </script>
+<script src="{% static 'scripts/jquery.flexslider.js' %}"> </script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#horizontalTab').easyResponsiveTabs({
+			type: 'default', //Types: default, vertical, accordion
+			width: 'auto', //auto or any width like 600px
+			fit: true   // 100% fit in a container
+		});
+	});
+</script>
+<script>
+	// Can also be used with $(document).ready()
+	$(window).ready(function () {
+		$('.flexslider').flexslider({
+			animation: "slide",
+			controlNav: "thumbnails"
+		});
+	});
+</script>
+<script>$(document).ready(function (c) {
+		$("div[class^='close']").on('click', function (c) {
+			let id = this.className.slice(5);
+			let headerName = 'cart-header' + id;
+			$('div[class^=' + headerName + "]").fadeOut('slow', function (c) {
+				$('div[class^=' + headerName + "]").remove();
+			});
+			$.ajax({
+				url: "/cart/remove",
+				type: "POST",
+				data: { "id": id, 'csrfmiddlewaretoken': '{{ csrf_token }}', }
+			});
+		});
+	});
+</script>
+<script>
+	$(window).ready(function () {
+		$('input[name$="id_material"]').on('change', function (c) {
+			this.parent().setAttribute("background", "#F9D9BE");
+			this.parent().setAttribute("color", "#555");
+			this.parent().setAttribute("font-size", "0.85em");
+			this.parent().setAttribute("visibility", "hidden");
+		});
+	});
+</script>
 {% endblock %}
 {% block content %}
-	<div class="banner">
-		<div class="container">
-			<div class="header_top">
-			   <div class="header_top_left">
-				  <div class="box_11"><a href="/cart">
-				  <h4><p>Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</p><img src="{% static 'images/bag.png' %}" alt=""/><div class="clearfix"> </div></h4>
-				  </a></div>
-				  <p class="empty"><a href="/cart/remove_all" class="simpleCart_empty">Empty Cart</a></p>
-				  <div class="clearfix"> </div>
-			   </div>
-				<div class="header_top_right">
-					<ul class="header_user_info">
-                        {% if not user.is_authenticated %}
-						<a class="login" href="/profile/login">
-							<i class="user"> </i>
-							<li class="user_desc">My Account</li>
-						</a>
-                        {% else %}
-                        <a class="login" href="/profile/logout">
-							<i class="user"> </i>
-							<li class="user_desc">{{ user.username }}</li>
-						</a>
-                        {% endif %}
-						<div class="clearfix"> </div>
-					</ul>
-					<!-- start search-->
-					<div class="search-box">
-					   <div id="sb-search" class="sb-search">
-						  <form method="get" action="/good/catalog">
-							 <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
-							 <input class="sb-search-submit" type="submit" value="">
-							 <span class="sb-icon-search"> </span>
-						  </form>
-						</div>
-					</div>
-					<!----search-scripts---->
-					<script src="{% static 'scripts/classie1.js' %}"></script>
-					<script src="{% static 'scripts/uisearch.js' %}"></script>
-					<script>
-						 new UISearch( document.getElementById( 'sb-search' ) );
-					</script>
-					<!----//search-scripts---->
-				</div>
+<div class="banner">
+	<div class="container">
+		<div class="header_top">
+			<div class="header_top_left">
+				<div class="box_11"><a href="/cart">
+						<h4>
+							<p>Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity"
+									class="simpleCart_quantity"></span> items)</p><img
+								src="{% static 'images/bag.png' %}" alt="" />
+							<div class="clearfix"> </div>
+						</h4>
+					</a></div>
+				<p class="empty"><a href="/cart/remove_all" class="simpleCart_empty">Empty Cart</a></p>
 				<div class="clearfix"> </div>
 			</div>
-			<div class="header_bottom">
-				<div class="logo">
-					<h1><a href="/"><span class="m_1">W</span>atches</a></h1>
+			<div class="header_top_right">
+				<ul class="header_user_info">
+					{% if not user.is_authenticated %}
+					<a class="login" href="/profile/login">
+						<i class="user"> </i>
+						<li class="user_desc">My Account</li>
+					</a>
+					{% else %}
+					<a class="login" href="/profile/logout">
+						<i class="user"> </i>
+						<li class="user_desc">{{ user.username }}</li>
+					</a>
+					{% endif %}
+					<div class="clearfix"> </div>
+				</ul>
+				<!-- start search-->
+				<div class="search-box">
+					<div id="sb-search" class="sb-search">
+						<form method="get" action="/good/catalog">
+							<input class="sb-search-input" placeholder="Enter your search term..." type="search"
+								name="search" id="search">
+							<input class="sb-search-submit" type="submit" value="">
+							<span class="sb-icon-search"> </span>
+						</form>
+					</div>
 				</div>
-				<div class="menu">
-					<ul class="megamenu skyblue">
-						<li><a class="color2" href="/good/catalog">Goods</a>
-							<div class="megapanel">
-								<div class="row">
-									<div class="col1">
-										<div class="h_nav">
-											<h4>Categories</h4>
-											<ul>
-                                                {% for category in categories %}
-                                                    <li><a href="#">{{ category.name }}</a></li>
-                                                {% endfor%}
-											</ul>
-										</div>
+				<!----search-scripts---->
+				<script src="{% static 'scripts/classie1.js' %}"></script>
+				<script src="{% static 'scripts/uisearch.js' %}"></script>
+				<script>
+					new UISearch(document.getElementById('sb-search'));
+				</script>
+				<!----//search-scripts---->
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="header_bottom">
+			<div class="logo">
+				<h1><a href="/"><span class="m_1">W</span>atches</a></h1>
+			</div>
+			<div class="menu">
+				<ul class="megamenu skyblue">
+					<li><a class="color2" href="/good/catalog">Goods</a>
+						<div class="megapanel">
+							<div class="row">
+								<div class="col1">
+									<div class="h_nav">
+										<h4>Categories</h4>
+										<ul>
+											{% for category in categories %}
+											<li><a href="#">{{ category.name }}</a></li>
+											{% endfor%}
+										</ul>
 									</div>
-									<div class="col2">
-										<div class="h_nav">
-											<h4>Trends</h4>
-											<ul>
-                                                {% for good in goods %}
-                                                    <li class>
-                                                        <div class="p_left">
-                                                            <img src="{{ good.image.url }}" style="height: 80px; width: auto;"
-                                                                 class="img-responsive" alt=""/>
-                                                        </div>
-                                                        <div class="p_right">
-                                                            <h4><a href="/good/{{ good.id }}">{{ good.name }}</a></h4>
-                                                            <span class="item-cat"><small><a
-                                                                    href="/good/{{ good.id }}">{{ good.category }}</a></small></span>
-                                                            <span class="price">{{ good.price }} $</span>
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </li>
-                                                {% endfor %}
-											</ul>
-										</div>
+								</div>
+								<div class="col2">
+									<div class="h_nav">
+										<h4>Trends</h4>
+										<ul>
+											{% for good in goods %}
+											<li class>
+												<div class="p_left">
+													<img src="{{ good.image.url }}" style="height: 80px; width: auto;"
+														class="img-responsive" alt="" />
+												</div>
+												<div class="p_right">
+													<h4><a href="/good/{{ good.id }}">{{ good.name }}</a></h4>
+													<span class="item-cat"><small><a href="/good/{{ good.id }}">{{
+																good.category }}</a></small></span>
+													<span class="price">{{ good.price }} $</span>
+												</div>
+												<div class="clearfix"></div>
+											</li>
+											{% endfor %}
+										</ul>
 									</div>
 								</div>
 							</div>
-						</li>
-						<li><a class="color10" href="#">Brands</a></li>
-						<li class="active grid"><a class="color3" href="#">Sale</a></li>
-						<li><a class="color7" href="#">News</a></li>
-						<div class="clearfix"></div>
-					</ul>
-				</div>
+						</div>
+					</li>
+					<li><a class="color10" href="#">Brands</a></li>
+					<li class="active grid"><a class="color3" href="#">Sale</a></li>
+					<li><a class="color7" href="#">News</a></li>
+					<div class="clearfix"></div>
+				</ul>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div id="main">
-    {% block main %}
-    {% endblock %}
-  	</div>
+<div id="main">
+	{% block main %}
+	{% endblock %}
+</div>
 
-    <footer>
-        <div class="container">
-   	 	<div class="newsletter">
+<footer>
+	<div class="container">
+		<div class="newsletter">
 			<h3>Newsletter</h3>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+				industry's standard</p>
 			<form>
-			  <input type="text" value="" onfocus="this.value='';" onblur="if (this.value === '') {this.value ='';}">
-			  <input type="submit" value="SUBSCRIBE">
+				<input type="text" value="" onfocus="this.value='';" onblur="if (this.value === '') {this.value ='';}">
+				<input type="submit" value="SUBSCRIBE">
 			</form>
 		</div>
-   		<div class="cssmenu">
-		   <ul>
-			<li class="active"><a href="#">Privacy</a></li>
-			<li><a href="#">Terms</a></li>
-			<li><a href="#">Shop</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="/contact">Contact</a></li>
-		  </ul>
+		<div class="cssmenu">
+			<ul>
+				<li class="active"><a href="#">Privacy</a></li>
+				<li><a href="#">Terms</a></li>
+				<li><a href="#">Shop</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
 		</div>
 		<ul class="social">
 			<li><a href=""> <i class="instagram"> </i> </a></li>
 			<li><a href=""><i class="fb"> </i> </a></li>
 			<li><a href=""><i class="tw"> </i> </a></li>
-	    </ul>
-	    <div class="clearfix"></div>
-	    <div class="copy">
-           <p> &copy; 2015 Watches. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a></p>
-	    </div>
-   	</div>
-    </footer>
+		</ul>
+		<div class="clearfix"></div>
+		<div class="copy">
+			<p> &copy; 2023 Watches. All Rights Reserved | Design by <a href="http://w3layouts.com/"
+					target="_blank">W3layouts</a></p>
+		</div>
+	</div>
+</footer>
 {% endblock %}
