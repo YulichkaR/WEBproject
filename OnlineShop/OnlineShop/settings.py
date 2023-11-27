@@ -150,3 +150,13 @@ SOCIAL_AUTH_GITHUB_KEY = '46d7afe91e04b547f8b4'
 SOCIAL_AUTH_GITHUB_SECRET = '19bad9c303ee120af48d99da2d120b7659c61ddc'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+#Це визначає URL-адресу для брокера повідомлень, який використовується Celery. У цьому випадку вказано використання Redis як брокера, і redis://redis:6379/0 - це URL-адреса, за якою знаходиться Redis.
+#redis:// - це схема для Redis.
+#redis - це ім'я хоста або IP-адреса сервера Redis.
+#6379 - це порт, на якому працює сервер Redis.
+#/0 - це номер бази даних Redis, у даному випадку використовується база даних з номером 0.
+#------------------------------------------------------
+#Це вказує, де Celery повинен зберігати результати своїх задач. У цьому випадку також використовується Redis як бекенд для результатів.
